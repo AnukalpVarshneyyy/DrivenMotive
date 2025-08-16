@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driven Motive | Official Page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="shortcut icon" href="logo(drivenmotive).jpeg" type="image/x-icon">
+</head>
+<body>
+
+<div class="topsection">
+  <div class="logo">
+    <img src="logo(drivenmotive).jpeg" alt="">
+  </div>
+  <div class="name">
+    <h1>Driven Motive - Instagram</h1>
+  </div>
+  <div class="about">
+    <h2>Inspiring, Motivating And Boosting Lives</h2>
+  </div>
+</div>
+
+<div class="instagram">
+  <a href="https://www.instagram.com/driven.motive._" target="_blank">
+    <button><img src="instagram.jfif"></button>
+  </a>
+</div>
+
+<!-- Contact/Feedback Form -->
+<div class="form-section">
+  <h2>For Collab Or Shoutout 🚀</h2>
+  <form id="myForm">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="response"></p>
+</div>
+
+<script>
+  const form = document.getElementById("myForm");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    };
+
+    // 🔹 Replace with your Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxr10LrONLhzfw-JhGhdlSfquYiQvZVVxd_0F6zthCOlEb30NuMLJ2nHjjeuMy5Cdpk/exec";
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+    .then(res => res.text())
+    .then(msg => {
+      document.getElementById("response").innerText = "✅ Thank you! Your response has been saved.";
+      form.reset();
+    })
+    .catch(err => {
+      document.getElementById("response").innerText = "❌ Error submitting form.";
+      console.error(err);
+    });
+  });
+</script>
+
+</body>
+</html>
